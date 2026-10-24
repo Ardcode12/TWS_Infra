@@ -1,0 +1,10 @@
+export const projects=[
+ {id:'courtyard',name:'The Courtyard House',type:'Residential',image:'/images/hero.jpg',location:'A quieter way of living',scope:'Architecture · Landscape',description:'A concept for a home organised around light, greenery and the everyday rituals of family life.'},
+ {id:'atelier',name:'The Living Atelier',type:'Interiors',image:'/images/villa.jpg',location:'Warmth in every detail',scope:'Interior architecture · Materials',description:'An interior concept that brings together tactile materials, generous daylight and thoughtful furniture arrangements.'},
+ {id:'canopy',name:'Canopy Residences',type:'Residential',image:'/images/house.jpg',location:'A home with room to breathe',scope:'Architecture · Construction',description:'A residential design study exploring open spaces, sheltered terraces and a strong connection to the outdoors.'},
+ {id:'exchange',name:'The Green Exchange',type:'Commercial',image:'/images/tower.jpg',location:'A new perspective on work',scope:'Commercial architecture · Planning',description:'A commercial concept focused on an expressive façade, shared spaces and a clear, adaptable structural rhythm.'},
+ {id:'garden',name:'Garden Pavilion',type:'Residential',image:'/images/courtyard.jpg',location:'Inside, meet outside',scope:'Architecture · Landscape',description:'A pavilion study in which deep overhangs and planted edges frame moments of openness and privacy.'},
+ {id:'still',name:'Still House',type:'Interiors',image:'/images/interior.jpg',location:'Less noise. More life.',scope:'Interiors · Spatial design',description:'A calm interior concept shaped by natural textures, practical storage and the movement of light.'},
+ {id:'material',name:'Material Matters',type:'Interiors',image:'/images/detail.jpg',location:'Considered, down to the grain',scope:'Material direction · Detailing',description:'An exploration of stone, timber and subtle contrasts, bringing a consistent material language to a home.'},
+];
+export type Project=typeof projects[number];

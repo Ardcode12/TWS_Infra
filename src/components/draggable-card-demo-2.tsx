@@ -1,0 +1,13 @@
+import {useRef,useState,useEffect} from 'react';
+import {motion,useScroll,useTransform,useReducedMotion} from 'motion/react';
+import {DraggableCardBody,DraggableCardContainer} from '@/components/ui/draggable-card';
+import {projects,type Project} from '@/data';
+import {ArrowUpRight,MoveHorizontal} from 'lucide-react';
+// Aceternity demo-2 composition, adapted to a scroll-driven architecture portfolio.
+export default function DraggableCardDemo({onOpen}:{onOpen:(project:Project)=>void}){
+ const section=useRef<HTMLElement>(null),track=useRef<HTMLDivElement>(null);const [distance,setDistance]=useState(1700);const [reset,setReset]=useState(0);const reduced=useReducedMotion();
+ const {scrollYProgress}=useScroll({target:section,offset:['start start','end end']});
+ const x=useTransform(scrollYProgress,[0,1],[0,-distance]);
+ useEffect(()=>{const measure=()=>{if(track.current)setDistance(Math.max(0,track.current.scrollWidth-window.innerWidth+100));};measure();const observer=new ResizeObserver(measure);if(track.current)observer.observe(track.current);window.addEventListener('resize',measure);return()=>{observer.disconnect();window.removeEventListener('resize',measure);};},[]);
+ return <section ref={section} className={`work-scroll ${reduced?'reduced':''}`} id="work" aria-labelledby="work-heading"><div className="work-sticky"><div className="section-top"><span className="eyebrow">A collection of possibilities</span><span className="small-note">Concept portfolio / 2026</span></div><div className="work-heading" data-aos="fade-up" data-aos-offset="30"><h2 id="work-heading">Good spaces.<br/><em>Great possibilities.</em></h2><p>Explore the ideas that shape our approach.<br/><span><MoveHorizontal size={17}/> Scroll to browse. Drag to rearrange.</span></p></div><DraggableCardContainer><motion.div ref={track} className="card-track" style={{x:reduced?0:x}}>{projects.map((project,i)=><div key={project.id} className="card-tilt" style={{rotate:`${[-5,4,-3,5,-4,3,-2][i]}deg`}}><DraggableCardBody label={project.name} resetKey={reset}><img src={project.image} alt={`${project.name} architectural inspiration`} loading="lazy" draggable={false}/><div className="drag-caption"><div><span>{project.type}</span><h3>{project.name}</h3></div><button className="round-link" aria-label={`View ${project.name}`} onPointerDown={e=>e.stopPropagation()} onClick={()=>onOpen(project)}><ArrowUpRight size={21}/></button></div></DraggableCardBody></div>)}</motion.div></DraggableCardContainer><div className="work-bottom"><span>Architecture. Interiors. Everything in between.</span><button onClick={()=>setReset(n=>n+1)}>Reset cards ↻</button></div><motion.div className="work-progress" style={{scaleX:scrollYProgress}}/></div></section>;
+}
