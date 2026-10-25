@@ -54,3 +54,17 @@
 @media(max-width:1000px){.room-category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.room-category-image{aspect-ratio:4/3}}
 @media(max-width:600px){.room-category-grid{gap:24px 16px}.room-category-image{aspect-ratio:3/4}.room-category-label{padding-top:14px;align-items:flex-start}.room-category-label h3{font-size:21px}.room-category-label div>span{font-size:11px}.room-category-arrow{width:28px;height:28px;flex-shrink:0}.room-category-arrow svg{width:16px}.category-results-heading{flex-wrap:wrap;gap:12px}.category-results-heading h3{font-size:22px}.category-results-heading>span{display:none}.category-introduction{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.room-category-image img,.room-category-arrow{transition:none}.room-category-card:hover img{transform:none}}
+
+/* Fixed portfolio cards; desktop scrolls horizontally, mobile flows vertically. */
+.draggable-card{cursor:default;transform-style:flat}.draggable-container{perspective:none}
+@media(max-width:768px){
+ .work-scroll .draggable-container{display:block;overflow:visible;padding:0;overscroll-behavior:auto}
+ .work-scroll .card-track{display:flex;flex-direction:column;width:100%;gap:48px;padding:45px 32px 28px;will-change:auto}
+ .work-scroll .card-tilt{width:100%}
+ .work-scroll .draggable-card{width:100%;min-height:0;padding:12px;box-shadow:0 10px 25px #094da218}
+ .work-scroll .draggable-card>img{height:auto;aspect-ratio:1.12;object-fit:cover}
+ .work-scroll .drag-caption{padding:18px 4px 8px;gap:12px}
+ .work-scroll .drag-caption h3{font-size:18px}
+ .work-scroll .round-link{width:44px;height:44px;flex-shrink:0}
+ .work-scroll .work-bottom>span{max-width:none}
+}
